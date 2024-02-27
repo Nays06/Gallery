@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+          box-sizing: border-box;
+        }
+
+        .cont {
+          position: relative;
+        }
+
+        .mySlides {
+          display: none;
+        }
+
+        .cursor {
+          cursor: pointer;
+        }
+
+        .prev,
+        .next {
+          cursor: pointer;
+          position: absolute;
+          top: 40%;
+          width: auto;
+          padding: 16px;
+          margin-top: -50px;
+          color: white;
+          font-weight: bold;
+          font-size: 20px;
+          border-radius: 0 3px 3px 0;
+          user-select: none;
+          -webkit-user-select: none;
+        }
+
+        .next {
+          right: 0;
+          border-radius: 3px 0 0 3px;
+          background-color: rgba(0, 0, 0, 0.8)
+        }
+
+        .prev:hover,
+        .next:hover {
+          background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .numtxt {
+          color: #f2f2f2;
+          font-size: 12px;
+          padding: 8px 12px;
+          position: absolute;
+          top: 0;
+        }
+
+        .cap-cont {
+          text-align: center;
+          background-color: #222;
+          padding: 2px 16px;
+          color: white;
+        }
+
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+
+        .column {
+          float: left;
+          width: 16.66%;
+        }
+
+        .demo {
+          opacity: 0.6;
+        }
+
+        .active,
+        .demo:hover {
+          opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="cont">
+        <div class="mySlides">
+            <div class="numTxt">
+                <img src="img/1.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="mySlides">
+            <div class="numTxt">
+                <img src="img/2.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="mySlides">
+            <div class="numTxt">
+                <img src="img/3.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="mySlides">
+            <div class="numTxt">
+                <img src="img/4.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="mySlides">
+            <div class="numTxt">
+                <img src="img/5.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="mySlides">
+            <div class="numTxt">
+                <img src="img/6.jpg" alt="">
+            </div>
+        </div>
+
+        <a class="prev" onclick="plusSlides(-1)">&#10094</a>
+        <a class="next" onclick="plusSlides(1)">&#10095</a>
+
+        <div class="cap-cont">
+            <p id="caption"></p>
+        </div>
+        <div class="row">
+            <div class="column">
+                <img class="demo cursor" src="img/1.jpg" style="width: 100%;" onclick="curSl(1)" alt="111">
+            </div>
+
+            <div class="column">
+                <img class="demo cursor" src="img/2.jpg" style="width: 100%;" onclick="curSl(2)" alt="222">
+            </div>
+
+            <div class="column">
+                <img class="demo cursor" src="img/3.jpg" style="width: 100%;" onclick="curSl(3)" alt="333">
+            </div>
+
+            <div class="column">
+                <img class="demo cursor" src="img/4.jpg" style="width: 100%;" onclick="curSl(4)" alt="444">
+            </div>
+
+            <div class="column">
+                <img class="demo cursor" src="img/5.jpg" style="width: 100%;" onclick="curSl(5)" alt="555">
+            </div>
+
+            <div class="column">
+                <img class="demo cursor" src="img/6.jpg" style="width: 100%;" onclick="curSl(6)" alt="666">
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        let slIn = 1;
+        showSlides(slIn);
+
+        function plusSlides(n){
+            showSlides(slIn += n)
+        }
+
+        function curSl(n){
+            showSlides(slIn = n)
+        }
+
+        function showSlides(n){
+            let i;
+            let sli = document.getElementsByClassName("mySlides")
+            let dots = document.getElementsByClassName("demo");
+            let capTxt = document.getElementById("caption")
+            if(n > sli.length){slIn = 1}
+            if(n < 1){slIn = sli.length}
+            for (i=0; i<sli.length; i++){
+                sli[i].style.display = "none"
+            }
+            for (i=0; i < dots.length; i++){
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            sli[slIn-1].style.display = "block";
+            dots[slIn-1].className += " active";
+            capTxt.innerHTML = dots[slIn-1].alt
+        }
+    </script>
+</body>
+</html>
